@@ -1,13 +1,18 @@
 #!/usr/bin/env node
-var debug = require('debug')('faker');
-var app = require('../app');
-var domain = require('domain');
-var srvDm = domain.create();
-var server;
+'use strict';
 
-app.set('port', process.env.PORT || 8000);
+//var debug = require('debug')('test');
+var connect = require('connect');
+var vhost = require('vhost');
 
-srvDm.run(function(){
-	server = app.listen(app.get('port'));
-	debug('listening on port ' + server.address().port);
+var config = require('./../configs/server');
+var home = './../services/';
+
+var app = connect();
+
+// Listen different domains bind on the processors mapped in service-configs
+config.vhosts.forEach(function(host){
+	app.use(vhost(host.domain, require(home + host.service)));
 });
+
+app.listen(process.env.PORT || config.port);

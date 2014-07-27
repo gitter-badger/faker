@@ -16,3 +16,4 @@ statics/lib
 .project
 .zedstate
 *.sublime-*
+env.json

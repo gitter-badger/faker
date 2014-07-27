@@ -1,0 +1,56 @@
+doctype html
+html(ng-class='html')
+  head
+    title(ng-bind='title') loading...
+
+    //- meta headers
+    meta(http-equiv='Content-Type', content='text/html;charset=UTF-8')
+    meta(http-equiv='viewport', content='width=device-width, initial-scale=1, user-scalable=no')
+    base(href='#{hosts.base}')
+
+    //- lib styles
+    link(rel='stylesheet', href='#{hosts.lib}/normalize.css/normalize.css')
+    link(rel='stylesheet', href='#{hosts.lib}/font-awesome/css/font-awesome.min.css')
+    link(rel='stylesheet', href='#{hosts.lib}/bootstrap/dist/css/bootstrap.min.css')
+    link(rel='stylesheet', href='#{hosts.lib}/bootstrap/dist/css/bootstrap-theme.min.css')
+    link(rel='stylesheet', href='#{hosts.lib}/angular/angular-csp.css')
+
+    //- custom styles
+    link(rel='stylesheet', href='#{hosts.dist}/styles/main.css')
+
+  body(ng-class='body')
+    header.container
+      nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+        .container
+          .navbar-header
+            a.navbar-brand(href='/') FAKER
+          .collapse.navbar-collapse
+            ul.nav.navbar-nav
+              li
+                a(href='/github') github
+              li
+                a(href='/perforce') perforce
+            ul.nav.navbar-nav.navbar-right
+              li
+                a(href='/login') login
+              li 
+                a(href='/register') register
+
+    main.container
+      .jumbotron
+        h1= path.substring(1).toUpperCase() || 'A Fake Name'
+
+    footer.container-fluid.faker-footer(role='contentinfo')
+      p.align-center 
+        a(href='#{ICP.url}')= ICP.id
+
+    //- lib scripts
+    script(src='#{hosts.lib}/jquery/dist/jquery.js')
+    script(src='#{hosts.lib}/bootstrap/dist/js/bootstrap.min.js')
+    script(src='#{hosts.lib}/angular/angular.min.js')
+    script(src='#{hosts.lib}/angular-route/angular-route.min.js')
+    script(src='#{hosts.lib}/angular-resource/angular-resource.min.js')
+    script(src='#{hosts.lib}/angular-cookies/angular-cookies.min.js')
+
+    //- custom scripts
+    script(src='#{hosts.dist}/scripts/app.js')
