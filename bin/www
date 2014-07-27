@@ -1,12 +1,13 @@
 #!/usr/bin/env node
-//var debug = require('debug')('faker');
+var debug = require('debug')('faker');
 var app = require('../app');
 var domain = require('domain');
 var srvDm = domain.create();
 var server;
 
-app.set('port', process.env.PORT || 80);
+app.set('port', process.env.PORT || 8000);
 
 srvDm.run(function(){
 	server = app.listen(app.get('port'));
+	debug('listening on port ' + server.address().port);
 });

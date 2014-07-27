@@ -1,8 +1,9 @@
 {
   "name": "faker",
   "version": "0.0.1",
-  "private": true,
   "scripts": {
+    "install": "bower install",
+    "update": "bower update",
     "start": "node ./bin/www"
   },
   "dependencies": {

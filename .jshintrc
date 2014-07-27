@@ -17,12 +17,6 @@
 	"validthis": true,
 	"nonew"    : true,
 	"scripturl": true,
-	"globals"  : {
-		"require": true,
-		"debug" : true,
-		"process": true,
-		"module": true
-	},
 	"strict"   : false,
 	"camelcase": false,
 	"plusplus" : false,
