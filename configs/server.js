@@ -7,6 +7,7 @@ var base = env.domain;
 var staticHost = 'static.' + base;
 var libHost = 'lib.' + staticHost;
 var distHost = 'dist.' + staticHost;
+var tplHost = 'tpl.' + base;
 var apiHost = 'api.' + base;
 var etcHost = '*.' + base;
 
@@ -16,7 +17,7 @@ var list = [
 	// Load the main page of the single-page-application
 	{ service: 'root', domain: base },
 	// Load the page parts of the single-page-application
-	{ service: 'view', domain: staticHost },
+	{ service: 'tpl', domain: tplHost },
 	// Load the 3rd-party static libs, it might be replaced by CDN solution
 	{ service: 'static', domain: libHost },
 	// Load the custom static files
@@ -34,7 +35,7 @@ module.exports = {
 	hosts: {
 		base: protocol + '://' + base + '/',
 		api: protocol + '://' + apiHost + '/',
-		view: protocol + '://' + staticHost + '/',
+		tpl: protocol + '://' + tplHost + '/',
 		lib: protocol + '://' + libHost + '/',
 		dist: protocol + '://' + distHost + '/'
 	},

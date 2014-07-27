@@ -7,6 +7,8 @@ var favicon = require('static-favicon');
 var url = require('url');
 
 var config = require('./../configs/server');
+// var lib = require('./../configs/lib-local');
+var lib = require('./../configs/lib-cdn');
 
 var app = express();
 
@@ -25,7 +27,8 @@ app.get('/*', function(req, res){
 		ICP: config.ICP,
 		path: parsed.pathname,
 		query: parsed.query,
-		href: parsed.href
+		href: parsed.href,
+		lib: lib
 	});
 	
 });

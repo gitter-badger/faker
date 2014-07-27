@@ -1,7 +1,7 @@
 doctype html
 html(ng-class='html')
   head
-    title(ng-bind='title') loading...
+    title(ng-bind='title')= path.substring(1).toUpperCase() || 'FAKER'
 
     //- meta headers
     meta(http-equiv='Content-Type', content='text/html;charset=UTF-8')
@@ -9,11 +9,9 @@ html(ng-class='html')
     base(href='#{hosts.base}')
 
     //- lib styles
-    link(rel='stylesheet', href='#{hosts.lib}/normalize.css/normalize.css')
-    link(rel='stylesheet', href='#{hosts.lib}/font-awesome/css/font-awesome.min.css')
-    link(rel='stylesheet', href='#{hosts.lib}/bootstrap/dist/css/bootstrap.min.css')
-    link(rel='stylesheet', href='#{hosts.lib}/bootstrap/dist/css/bootstrap-theme.min.css')
-    link(rel='stylesheet', href='#{hosts.lib}/angular/angular-csp.css')
+    - lib.each('style', function(url){
+      link(rel='stylesheet', href='#{url}')
+    - })
 
     //- custom styles
     link(rel='stylesheet', href='#{hosts.dist}/styles/main.css')
@@ -45,12 +43,9 @@ html(ng-class='html')
         a(href='#{ICP.url}')= ICP.id
 
     //- lib scripts
-    script(src='#{hosts.lib}/jquery/dist/jquery.js')
-    script(src='#{hosts.lib}/bootstrap/dist/js/bootstrap.min.js')
-    script(src='#{hosts.lib}/angular/angular.min.js')
-    script(src='#{hosts.lib}/angular-route/angular-route.min.js')
-    script(src='#{hosts.lib}/angular-resource/angular-resource.min.js')
-    script(src='#{hosts.lib}/angular-cookies/angular-cookies.min.js')
+    - lib.each('script', function(url){
+      script(src='#{url}')
+    - })
 
     //- custom scripts
     script(src='#{hosts.dist}/scripts/app.js')
