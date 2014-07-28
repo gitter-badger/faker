@@ -5,8 +5,6 @@ var env = require('./../env');
 
 var base = env.domain;
 var staticHost = 'static.' + base;
-var libHost = 'lib.' + staticHost;
-var distHost = 'dist.' + staticHost;
 var tplHost = 'tpl.' + base;
 var apiHost = 'api.' + base;
 var etcHost = '*.' + base;
@@ -18,10 +16,8 @@ var list = [
 	{ service: 'root', domain: base },
 	// Load the page parts of the single-page-application
 	{ service: 'tpl', domain: tplHost },
-	// Load the 3rd-party static libs, it might be replaced by CDN solution
-	{ service: 'static', domain: libHost },
-	// Load the custom static files
-	{ service: 'static', domain: distHost },
+	// Load the statics
+	{ service: 'static', domain: staticHost },
 	// Load the api
 	{ service: 'api', domain: apiHost },
 	// Other domains processing
@@ -36,8 +32,7 @@ module.exports = {
 		base: protocol + '://' + base + '/',
 		api: protocol + '://' + apiHost + '/',
 		tpl: protocol + '://' + tplHost + '/',
-		lib: protocol + '://' + libHost + '/',
-		dist: protocol + '://' + distHost + '/'
+		static: protocol + '://' + staticHost + '/'
 	},
 	ICP: {
 		id: '苏ICP备14034957号-1',

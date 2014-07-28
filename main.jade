@@ -9,12 +9,9 @@ html(ng-class='html')
     base(href='#{hosts.base}')
 
     //- lib styles
-    - lib.each('style', function(url){
+    - statics.each('style', function(url){
       link(rel='stylesheet', href='#{url}')
     - })
-
-    //- custom styles
-    link(rel='stylesheet', href='#{hosts.dist}/styles/main.css')
 
   body(ng-class='body')
     header.container
@@ -35,17 +32,13 @@ html(ng-class='html')
                 a(href='/register') register
 
     main.container
-      .jumbotron
+      .jumbotron.align-center
         h1= path.substring(1).toUpperCase() || 'A Fake Name'
 
     footer.container-fluid.faker-footer(role='contentinfo')
       p.align-center 
         a(href='#{ICP.url}')= ICP.id
 
-    //- lib scripts
-    - lib.each('script', function(url){
+    - statics.each('script', function(url){
       script(src='#{url}')
     - })
-
-    //- custom scripts
-    script(src='#{hosts.dist}/scripts/app.js')

@@ -9,20 +9,11 @@ var serverUtil = require('./../utils/server');
 
 var app = express();
 
-var staticPath = path.dirname(__dirname) + '/statics/';
+var staticPath = path.dirname(__dirname) + '/statics';
 
 app.get('/*', function(req, res){
 	
-	/*
-	 * The dirname is the bottom domain part of the host of request
-	 * example:  
-	 * 	request.host => txt.static.domain.com
-	 *  dir => txt
-	 *  path => path-to-statics/txt/path-to-file
-	 */
-	var dir = req.headers.host.split('.')[0];
-	
-	var filePath = staticPath + dir + url.parse(req.url).pathname;
+	var filePath = staticPath + url.parse(req.url).pathname;
 
 	serverUtil.respFile(filePath, res, function(err){
 		if(err){
