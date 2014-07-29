@@ -26,16 +26,16 @@ var list = [
 
 module.exports = {
 	domain: env.domain,
-	port: 80,
+	port  : 80,
 	vhosts: list,
-	hosts: {
-		base: protocol + '://' + base + '/',
-		api: protocol + '://' + apiHost + '/',
-		tpl: protocol + '://' + tplHost + '/',
+	hosts : {
+		base  : protocol + '://' + base + '/',
+		api   : protocol + '://' + apiHost + '/',
+		tpl   : protocol + '://' + tplHost + '/',
 		static: protocol + '://' + staticHost + '/'
 	},
-	ICP: {
-		id: '苏ICP备14034957号-1',
+	ICP   : {
+		id : '苏ICP备14034957号-1',
 		url: 'http://www.miibeian.gov.cn/'
 	}
 };

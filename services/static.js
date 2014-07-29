@@ -12,7 +12,7 @@ var app = express();
 var staticPath = path.dirname(__dirname) + '/statics';
 
 app.get('/*', function(req, res){
-	
+
 	var filePath = staticPath + url.parse(req.url).pathname;
 
 	serverUtil.respFile(filePath, res, function(err){
@@ -21,7 +21,7 @@ app.get('/*', function(req, res){
 			res.end('Resource Not Found');
 		}
 	});
-	
+
 });
 
 module.exports = app;

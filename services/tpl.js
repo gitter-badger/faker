@@ -17,7 +17,7 @@ app.get('/*', function(req, res){
 	var filename = url.parse(req.url).pathname;
 	var filePath = viewPath + filename;
 
-	fs.exists(filePath + '.jade', function (exists) {
+	fs.exists(filePath + '.jade', function(exists){
 		if(exists){
 			res.render(filePath);
 		}else{
@@ -25,7 +25,7 @@ app.get('/*', function(req, res){
 			res.end('Template Not Found');
 		}
 	});
-	
+
 });
 
 module.exports = app;
