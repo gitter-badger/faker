@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 'use strict';
 
 /**
@@ -32,7 +31,7 @@ Collection.prototype.inited = function(key){
 /**
  * Add an item to a group with key
  * @param {string|int} key
- * @param {mixed} item
+ * @param {*} item
  * @return {Collection}
  **/
 Collection.prototype.add = function(key, item){
@@ -81,7 +80,7 @@ function CollectionGroup(key, mount){
 
 /**
  * Add an item to the group
- * @param {mixed} item
+ * @param {*} item
  * @return {CollectionGroup}
  **/
 CollectionGroup.prototype.add = function(item){

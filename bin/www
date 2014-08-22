@@ -1,18 +1,15 @@
 #!/usr/bin/env node
 'use strict';
 
-//var debug = require('debug')('test');
-var connect = require('connect');
-var vhost = require('vhost');
+var env = require('./../env');
 
-var config = require('./../configs/server');
-var home = './../services/';
+setup('api');
 
-var app = connect();
+function setup(tag){
+	var component = require('./../services/' + tag);
+	var port = process.env.PORT || env.services[tag].port;
 
-// Listen different domains bind on the processors mapped in service-configs
-config.vhosts.forEach(function(host){
-	app.use(vhost(host.domain, require(home + host.service)));
-});
-
-app.listen(process.env.PORT || config.port);
+	component.listen(port, function(){
+		console.info('Application-component `'+ tag +'` is listening at port `'+ port +'`');
+	});
+}

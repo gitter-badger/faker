@@ -1,0 +1,29 @@
+server {
+	listen 80;
+	server_name api.fake.name;
+	location / {
+        proxy_pass http://localhost:8000/;
+	}
+}
+server {
+	listen 80;
+	server_name ui.fake.name;
+    root /faker/ui/dist;
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+server {
+	listen 80;
+	server_name fake.name *.fake.name;
+    root /faker/ui/dist;
+    index index.html;
+	location / {
+        if (-f $request_filename/index.html){
+            rewrite (.*) $1/index.html break;
+        }
+        if (!-f $request_filename){
+            rewrite (.*) /index.html;
+        }
+	}
+}

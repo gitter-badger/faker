@@ -8,7 +8,9 @@ nohup.out
 npm-debug.log
 bower_components
 **/bower_components
-statics/lib
+ui/src/libraries
+ui/dist
+env.json
 .settings
 .DS_Store
 **/.DS_Store
@@ -16,4 +18,3 @@ statics/lib
 .project
 .zedstate
 *.sublime-*
-env.json
