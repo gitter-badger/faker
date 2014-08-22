@@ -1,5 +1,5 @@
 {
-  "name": "faker",
+  "name": "faker.web-app",
   "version": "0.0.2",
   "dependencies": {
     "normalize.css": "~3.0.1",
