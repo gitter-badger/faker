@@ -6,24 +6,32 @@ function url(uri){
   return env.protocol + '://' + uri + '/';
 }
 
+function formatFactory(prefix){
+  return function(uri){
+    return url(prefix) + uri;
+  };
+}
+
+var format = formatFactory(env.uiHost+'/libraries');
+
 module.exports = {
   url: url,
-  libs: {
+  statics: {
     dev: {
       styles:[
-        url('libraries/normalize.css/normalize.css'),
-        url('libraries/font-awesome/css/font-awesome.css'),
-        url('libraries/bootstrap/dist/css/bootstrap.css'),
-        url('libraries/bootstrap/dist/css/bootstrap-theme.css'),
-        url('libraries/angular/angular-csp.css')
+        format('normalize.css/normalize.css'),
+        format('font-awesome/css/font-awesome.css'),
+        format('bootstrap/dist/css/bootstrap.css'),
+        format('bootstrap/dist/css/bootstrap-theme.css'),
+        format('angular/angular-csp.css')
       ],
       scripts:[
-        url('libraries/jquery/dist/jquery.js'),
-        url('libraries/bootstrap/dist/js/bootstrap.js'),
-        url('libraries/angular/angular.js'),
-        url('libraries/angular-route/angular-route.js'),
-        url('libraries/angular-resource/angular-resource.js'),
-        url('libraries/angular-sanitize/angular-sanitize.js')
+        format('jquery/dist/jquery.js'),
+        format('bootstrap/dist/js/bootstrap.js'),
+        format('angular/angular.js'),
+        format('angular-route/angular-route.js'),
+        format('angular-resource/angular-resource.js'),
+        format('angular-sanitize/angular-sanitize.js')
       ]
     }
   }

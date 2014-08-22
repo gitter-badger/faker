@@ -19,7 +19,7 @@ gulp.task('clean', function(){
 gulp.task('dev', ['clean'], function(){
 
   // indexFile process
-  var data = { env: env, ui: libs.libs.dev, url: libs.url };
+  var data = { env: env, ui: libs.statics.dev, url: libs.url };
   gulp.src([srcHome + '/index.jade'])
     .pipe(jade({ data: data, compileDebug: true, pretty: true }))
     .pipe(gulp.dest(distHome));

@@ -3,7 +3,7 @@
 var fs = require('fs');
 var mime = require('mime');
 
-// Read file and response to clinet
+// Read file and response to client
 function responseFile(filePath, response, callback, fileExt){
 	fs.exists(filePath, function(exists){
 		if(exists){
