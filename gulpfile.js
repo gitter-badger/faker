@@ -5,36 +5,30 @@ var replace = require('gulp-replace');
 var del = require('del');
 var jade = require('gulp-jade');
 
-var exec = require('child_process').exec;
 var env = require('./env');
 var libs = require('./configs/libs');
 
-var srcHome = 'ui/src';
-var distHome = 'ui/dist';
+var srcHome = './ui/src';
+var distHome = './ui/dist';
 
 gulp.task('clean', function(){
-  del([distHome + '/*'], { force: true });
+  del([ distHome + '/*' ], { force: true });
 });
 
-gulp.task('dev', ['clean'], function(){
-
-  // indexFile process
+gulp.task('index-process', function(){
   var data = { env: env, ui: libs.statics.dev, url: libs.url };
-  gulp.src([srcHome + '/index.jade'])
+  gulp.src([ srcHome + '/index.jade' ])
     .pipe(jade({ data: data, compileDebug: true, pretty: true }))
     .pipe(gulp.dest(distHome));
-
-  // templates process
-  exec('cp ' + srcHome + '/templates ' + distHome + '/ -r');
-  // scripts process
-  exec('cp ' + srcHome + '/scripts ' + distHome + '/ -r');
-  // styles process
-  exec('cp ' + srcHome + '/styles ' + distHome + '/ -r');
-  // resources process
-  exec('cp ' + srcHome + '/resources ' + distHome + '/ -r');
-  // images process
-  exec('cp ' + srcHome + '/images ' + distHome + '/ -r');
-
 });
 
-gulp.task('default', ['dev']);
+gulp.task('dev', [ 'clean', 'index-process' ], function(){
+  gulp.src([ 'images/**/*.*' ], { cwd: srcHome }).pipe(gulp.dest(distHome + '/images'));
+  gulp.src([ 'libraries/**/*.*' ], { cwd: srcHome }).pipe(gulp.dest(distHome + '/libraries'));
+  gulp.src([ 'defines/**/*.*' ], { cwd: srcHome }).pipe(gulp.dest(distHome + '/defines'));
+  gulp.src([ 'scripts/**/*.*' ], { cwd: srcHome }).pipe(gulp.dest(distHome + '/scripts'));
+  gulp.src([ 'styles/**/*.*' ], { cwd: srcHome }).pipe(gulp.dest(distHome + '/styles'));
+  gulp.src([ 'templates/**/*.*' ], { cwd: srcHome }).pipe(gulp.dest(distHome + '/templates'));
+});
+
+gulp.task('default', [ 'dev' ]);

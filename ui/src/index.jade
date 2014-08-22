@@ -1,5 +1,5 @@
 doctype html
-html(ng-class='html')
+html(ng-class='html', ng-app='main')
   head
     title(ng-bind='title') loading
 
@@ -15,6 +15,8 @@ html(ng-class='html')
     - ui.styles.forEach(function(url){
       link(rel='stylesheet', href='#{url}')
     - })
+
+    link(rel='stylesheet', href='#{url(env.uiHost)}styles/main.css')
 
   body(ng-class='body')
     header.container
@@ -34,7 +36,7 @@ html(ng-class='html')
               li
                 a(ng-href='/register') register
 
-    main.container(ng-view)
+    main.container.main-monitor(ng-view)
       .jumbotron.align-center
         h1 loading ...
 
@@ -47,12 +49,15 @@ html(ng-class='html')
       script(src='#{url}')
     - })
 
+    script(src='#{url(env.uiHost)}scripts/resources/json.js')
+    script(src='#{url(env.uiHost)}scripts/main.js')
+
     script.
-      (function(ng, doc){
+      (function(ng){
         'use strict';
 
         // root module of the application
-        ng.module('main', [])
+        ng.module('main')
           .constant('config', {
             protocol: '!{ env.protocol }',
             domain: '!{ env.domain }',
@@ -63,6 +68,4 @@ html(ng-class='html')
             apiHome: '!{ url(env.apiHost) }'
           });
 
-        // bind the document to be an angular application
-        ng.bootstrap(doc, ['main']);
-      })(angular, window.document);
+      })(angular);
