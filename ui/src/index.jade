@@ -1,0 +1,68 @@
+doctype html
+html(ng-class='html')
+  head
+    title(ng-bind='title') loading
+
+    //- meta headers
+    meta(http-equiv='Content-Type', content='text/html;charset=UTF-8;')
+    meta(http-equiv='viewport', content='width=device-width, initial-scale=1, user-scalable=no')
+
+    base(href='#{env.domain}')
+
+    link(rel='shortcut icon', href='#{url(env.uiHost)}images/icon/main.ico')
+
+    //- lib styles
+    - ui.styles.forEach(function(url){
+      link(rel='stylesheet', href='#{url}')
+    - })
+
+  body(ng-class='body')
+    header.container
+      nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+        .container
+          .navbar-header
+            a.navbar-brand(href='/') FAKER
+          .collapse.navbar-collapse
+            ul.nav.navbar-nav
+              li
+                a(ng-href='/github') github
+              li
+                a(ng-href='/perforce') perforce
+            ul.nav.navbar-nav.navbar-right
+              li
+                a(ng-href='/login') login
+              li
+                a(ng-href='/register') register
+
+    main.container(ng-view)
+      .jumbotron.align-center
+        h1 loading ...
+
+    footer.container-fluid.faker-footer(role='contentinfo')
+      p.align-center
+        a(ng-href='{{ICP.href}}', ng-bind='ICP.label')
+
+    //- lib scripts
+    - ui.scripts.forEach(function(url){
+      script(src='#{url}')
+    - })
+
+    script.
+      (function(ng, doc){
+        'use strict';
+
+        // root module of the application
+        ng.module('main', [])
+          .constant('config', {
+            protocol: '!{ env.protocol }',
+            domain: '!{ env.domain }',
+            home: '!{ url(env.domain) }',
+            uiHost: '!{ env.uiHost }',
+            uiHome: '!{ url(env.uiHost) }',
+            apiHost: '!{ env.apiHost }',
+            apiHome: '!{ url(env.apiHost) }'
+          });
+
+        // bind the document to be an angular application
+        ng.bootstrap(doc, ['main']);
+      })(angular, window.document);
