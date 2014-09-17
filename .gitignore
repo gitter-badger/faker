@@ -1,5 +1,4 @@
 node_modules
-**/node_modules
 .idea
 nohup.out
 .tmp
@@ -8,8 +7,9 @@ nohup.out
 npm-debug.log
 bower_components
 **/bower_components
-ui/src/libraries
+ui/lib
 ui/dist
+blog/dist
 env.json
 .settings
 .DS_Store

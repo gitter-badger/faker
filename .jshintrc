@@ -13,15 +13,19 @@
 	"trailing" : true,
 	"smarttabs": true,
 	"noempty"  : true,
-	"quotmark" : "single",
 	"validthis": true,
 	"nonew"    : true,
 	"scripturl": true,
 	"strict"   : true,
+  "globals"  : {
+    "angular"   : true,
+    "jquery"    : true
+  },
 	"camelcase": false,
 	"plusplus" : false,
 	"nonbsp"   : false,
 	"forin"    : false,
 	"latedef"  : false,
-	"bitwise"  : false
+	"bitwise"  : false,
+  "quotmark" : "single"
 }

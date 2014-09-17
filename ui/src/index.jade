@@ -1,23 +1,20 @@
 doctype html
-html(ng-class='html', ng-app='main')
+html(ng-class='html', ng-app='faker')
   head
     title(ng-bind='title') loading
-
     //- meta headers
     meta(http-equiv='Content-Type', content='text/html;charset=UTF-8;')
     meta(http-equiv='viewport', content='width=device-width, initial-scale=1, user-scalable=no')
-
     base(href='#{url(env.domain)}')
-
-    link(rel='shortcut icon', href='#{url(env.uiHost)}images/icon/main.ico')
-
+    link(rel='shortcut icon', href='#{url(env.uiHost)}images/icon/faker.ico')
     //- lib styles
-    - ui.styles.forEach(function(url){
+    - ui.lib.styles.forEach(function(url){
       link(rel='stylesheet', href='#{url}')
     - })
-
-    link(rel='stylesheet', href='#{url(env.uiHost)}styles/main.css')
-
+    //- com styles
+    - ui.com.styles.forEach(function(url){
+      link(rel='stylesheet', href='#{url}')
+    - })
   body(ng-class='body')
     header.container
       nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
@@ -35,29 +32,26 @@ html(ng-class='html', ng-app='main')
                 a(ng-href='/login') login
               li
                 a(ng-href='/register') register
-
     main.container.main-monitor(ng-view)
       .jumbotron.align-center
         h1 loading ...
-
     footer.container-fluid.faker-footer(role='contentinfo')
       p.align-center
         a(ng-href='{{ICP.href}}', ng-bind='ICP.label')
-
     //- lib scripts
-    - ui.scripts.forEach(function(url){
+    - ui.lib.scripts.forEach(function(url){
       script(src='#{url}')
     - })
-
-    script(src='#{url(env.uiHost)}scripts/resources/json.js')
-    script(src='#{url(env.uiHost)}scripts/main.js')
-
+    //- com scripts
+    - ui.com.scripts.forEach(function(url){
+      script(src='#{url}')
+    - })
+    //- some defining
     script.
       (function(ng){
         'use strict';
-
         // root module of the application
-        ng.module('main')
+        ng.module('faker')
           .constant('config', {
             protocol: '!{ env.protocol }',
             domain: '!{ env.domain }',
@@ -67,5 +61,4 @@ html(ng-class='html', ng-app='main')
             apiHost: '!{ env.apiHost }',
             apiHome: '!{ url(env.apiHost) }'
           });
-
-      })(angular);
+      }).call(window, angular);
